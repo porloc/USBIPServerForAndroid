@@ -37,10 +37,22 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
+    - name: Create Release and Upload APK
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ github.run_number }}
+        name: Release v${{ github.run_number }}
+        draft: false
+        prerelease: false
+        # Путь к собранному APK файлу
+        files: app/build/outputs/apk/debug/*.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
-    - name: Publish to GitHub Packages
-      run: ./gradlew publish
-      env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #- name: Publish to GitHub Packages
+    #  run: ./gradlew publish
+    #  env:
+    #    USERNAME: ${{ github.actor }}
+    #    TOKEN: ${{ secrets.GITHUB_TOKEN }}
