@@ -45,7 +45,7 @@ jobs:
         draft: false
         prerelease: false
         # Путь к собранному APK файлу
-        files: build/*.apk
+        files: app/build/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
