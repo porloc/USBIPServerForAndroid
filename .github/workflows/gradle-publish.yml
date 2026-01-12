@@ -35,7 +35,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build -d
 
     - name: Create Release and Upload APK
       uses: softprops/action-gh-release@v2
